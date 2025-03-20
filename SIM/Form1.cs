@@ -1,4 +1,10 @@
-﻿using System;
+﻿// -------------------------------------------------
+// Universidad de la Costa (CUC) - 2025
+// Licencia: Creative Commons BY-NC-SA 4.0
+// No comercial | Requiere atribución | Compartir igual
+// -------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
