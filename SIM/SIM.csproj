@@ -95,5 +95,8 @@
   <ItemGroup>
     <None Include="Resources\actualizar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transferencia-de-datos.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

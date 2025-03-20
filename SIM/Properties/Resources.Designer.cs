@@ -79,5 +79,15 @@ namespace SIM.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transferencia_de_datos {
+            get {
+                object obj = ResourceManager.GetObject("transferencia-de-datos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
