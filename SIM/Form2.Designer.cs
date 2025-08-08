@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.Btn_1 = new System.Windows.Forms.Button();
             this.Btn_2 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Btn_0 = new System.Windows.Forms.Button();
@@ -42,6 +41,7 @@
             this.Btn_4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Btn_3 = new System.Windows.Forms.Button();
+            this.Btn_5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,17 +65,10 @@
             this.Btn_2.UseVisualStyleBackColor = true;
             this.Btn_2.Click += new System.EventHandler(this.Btn_2_Click);
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(174, 428);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 6;
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(380, 428);
+            this.comboBox1.Location = new System.Drawing.Point(12, 399);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 21);
             this.comboBox1.TabIndex = 7;
@@ -92,15 +85,15 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(38, 400);
+            this.textBox1.Location = new System.Drawing.Point(74, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(75, 20);
+            this.textBox1.Size = new System.Drawing.Size(79, 20);
             this.textBox1.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 407);
+            this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(20, 13);
             this.label1.TabIndex = 12;
@@ -109,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 407);
+            this.label2.Location = new System.Drawing.Point(12, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 13;
@@ -117,39 +110,54 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(174, 400);
+            this.textBox2.Location = new System.Drawing.Point(74, 38);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(79, 20);
             this.textBox2.TabIndex = 14;
             // 
             // Btn_4
             // 
+            this.Btn_4.AccessibleName = "Conectar";
             this.Btn_4.Image = global::SIM.Properties.Resources.transferencia_de_datos;
-            this.Btn_4.Location = new System.Drawing.Point(581, 426);
+            this.Btn_4.Location = new System.Drawing.Point(104, 366);
             this.Btn_4.Name = "Btn_4";
             this.Btn_4.Size = new System.Drawing.Size(29, 27);
             this.Btn_4.TabIndex = 15;
+            this.Btn_4.Tag = "Conectar";
             this.Btn_4.UseVisualStyleBackColor = true;
             this.Btn_4.Click += new System.EventHandler(this.Btn_4_ClickAsync);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(191, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(760, 361);
+            this.pictureBox1.Size = new System.Drawing.Size(581, 408);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // Btn_3
             // 
+            this.Btn_3.AccessibleName = "Actualizar";
             this.Btn_3.Image = global::SIM.Properties.Resources.actualizar;
-            this.Btn_3.Location = new System.Drawing.Point(542, 426);
+            this.Btn_3.Location = new System.Drawing.Point(12, 366);
             this.Btn_3.Name = "Btn_3";
             this.Btn_3.Size = new System.Drawing.Size(33, 27);
             this.Btn_3.TabIndex = 8;
+            this.Btn_3.Tag = "Actualizar";
             this.Btn_3.UseVisualStyleBackColor = true;
             this.Btn_3.Click += new System.EventHandler(this.Btn_3_Click);
+            // 
+            // Btn_5
+            // 
+            this.Btn_5.AccessibleName = "Desconectar";
+            this.Btn_5.Image = global::SIM.Properties.Resources.transferencia_de_datos;
+            this.Btn_5.Location = new System.Drawing.Point(139, 366);
+            this.Btn_5.Name = "Btn_5";
+            this.Btn_5.Size = new System.Drawing.Size(29, 27);
+            this.Btn_5.TabIndex = 16;
+            this.Btn_5.Tag = "Desconectar";
+            this.Btn_5.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
@@ -157,6 +165,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.ControlBox = false;
+            this.Controls.Add(this.Btn_5);
             this.Controls.Add(this.Btn_4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -166,7 +175,6 @@
             this.Controls.Add(this.Btn_0);
             this.Controls.Add(this.Btn_3);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.Btn_2);
             this.Controls.Add(this.Btn_1);
             this.MaximizeBox = false;
@@ -184,7 +192,6 @@
         #endregion
         private System.Windows.Forms.Button Btn_1;
         private System.Windows.Forms.Button Btn_2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button Btn_3;
@@ -195,5 +202,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button Btn_4;
+        private System.Windows.Forms.Button Btn_5;
     }
 }
