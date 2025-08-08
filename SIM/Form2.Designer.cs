@@ -158,6 +158,7 @@
             this.Btn_5.TabIndex = 16;
             this.Btn_5.Tag = "Desconectar";
             this.Btn_5.UseVisualStyleBackColor = true;
+            this.Btn_5.Click += new System.EventHandler(this.Btn_5_Click);
             // 
             // Form2
             // 

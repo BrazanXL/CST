@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -47,16 +48,30 @@ namespace SIM
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            string data = serialPort.ReadLine();
-            if (float.TryParse(data, out float valorX))
+            try
             {
-                Invoke(new Action(() =>
+                if (serialPort == null || !serialPort.IsOpen)
+                    return;
+
+                string data = serialPort.ReadExisting(); // No bloquea
+                string[] partes = data.Split('\n'); // Separar por líneas si el ESP32 las envía así
+
+                foreach (string parte in partes)
                 {
-                    if (datosX.Count >= maxPuntos) datosX.RemoveAt(0);
-                    datosX.Add(valorX);
-                    pictureBox1.Invalidate(); // Redibujar la gráfica
-                }));
+                    if (float.TryParse(parte.Trim(), out float valorX))
+                    {
+                        Invoke(new Action(() =>
+                        {
+                            if (datosX.Count >= maxPuntos)
+                                datosX.RemoveAt(0);
+
+                            datosX.Add(valorX);
+                            pictureBox1.Invalidate();
+                        }));
+                    }
+                }
             }
+            catch { /* Ignorar errores de cierre */ }
         }
 
         private void Btn_3_Click(object sender, EventArgs e)
@@ -145,6 +160,25 @@ namespace SIM
             }
         }
 
-
+        private void Btn_5_Click(object sender, EventArgs e)
+        {
+            if (serialPort != null)
+            {
+                if (serialPort.IsOpen)
+                {
+                    serialPort.DataReceived -= SerialPort_DataReceived; // Desactiva evento
+                    serialPort.Close();
+                    MessageBox.Show("Conexión cerrada");
+                }
+                else
+                {
+                    MessageBox.Show("Conecte un puerto primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Conecte un puerto primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
