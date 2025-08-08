@@ -95,12 +95,42 @@ namespace SIM
 
         private void Btn_1_Click(object sender, EventArgs e)
         {
-
+            if (serialPort != null && serialPort.IsOpen)
+            {
+                try
+                {
+                    serialPort.Write("START"); // Cambia "START" por el comando que entienda tu ESP32
+                    MessageBox.Show("Simulación iniciada");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al enviar comando: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Conecte un puerto primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void Btn_2_Click(object sender, EventArgs e)
         {
-
+            if (serialPort != null && serialPort.IsOpen)
+            {
+                try
+                {
+                    serialPort.Write("STOP"); // Cambia "STOP" por el comando que entienda tu ESP32
+                    MessageBox.Show("Simulación detenida");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al enviar comando: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Conecte un puerto primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
