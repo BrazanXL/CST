@@ -45,7 +45,7 @@ namespace SIM
                 comboBox1.SelectedIndex = 0;
             }
         }
-
+        //DATA ANALIZADOR
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -53,32 +53,39 @@ namespace SIM
                 if (serialPort == null || !serialPort.IsOpen)
                     return;
 
-                string data = serialPort.ReadExisting(); // No bloquea
-                string[] partes = data.Split('\n'); // Separar por líneas si el ESP32 las envía así
+                string data = serialPort.ReadLine().Trim();
 
-                foreach (string parte in partes)
+                if (data == "CST_READY?")
                 {
-                    if (float.TryParse(parte.Trim(), out float valorX))
-                    {
-                        Invoke(new Action(() =>
-                        {
-                            if (datosX.Count >= maxPuntos)
-                                datosX.RemoveAt(0);
-
-                            datosX.Add(valorX);
-                            pictureBox1.Invalidate();
-                        }));
-                    }
+                    serialPort.WriteLine("PC_ACK"); // 🟢 Responder handshake
                 }
+
+                //string data = serialPort.ReadExisting(); // No bloquea
+                //string[] partes = data.Split('\n'); // Separar por líneas si el ESP32 las envía así
+
+                //foreach (string parte in partes)
+                //{
+                //    if (float.TryParse(parte.Trim(), out float valorX))
+                //    {
+                //        Invoke(new Action(() =>
+                //        {
+                //            if (datosX.Count >= maxPuntos)
+                //                datosX.RemoveAt(0);
+
+                //            datosX.Add(valorX);
+                //            pictureBox1.Invalidate();
+                //        }));
+                //    }
+                //}
             }
             catch { /* Ignorar errores de cierre */ }
         }
-
+        //UPTADE_PORTS
         private void Btn_3_Click(object sender, EventArgs e)
         {
             LoadSerialPorts();  // Llamar a la función para actualizar los puertos
         }
-
+        //EXIT
         private void Btn_0_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("¿Seguro que quieres salir?", "Confirmar salida",
@@ -92,7 +99,7 @@ namespace SIM
                 Application.Exit(); // Cierra el programa si elige "Sí"
             }
         }
-
+        //START
         private void Btn_1_Click(object sender, EventArgs e)
         {
             if (serialPort != null && serialPort.IsOpen)
@@ -112,7 +119,7 @@ namespace SIM
                 MessageBox.Show("Conecte un puerto primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
+        //STOP
         private void Btn_2_Click(object sender, EventArgs e)
         {
             if (serialPort != null && serialPort.IsOpen)
@@ -163,7 +170,7 @@ namespace SIM
             if (puertos.Length > 0)
                 comboBox1.SelectedIndex = 0; // Seleccionar el primer puerto disponible
         }
-
+        //CONECT
         private async void Btn_4_ClickAsync(object sender, EventArgs e)
         {
             if (serialPort != null && serialPort.IsOpen) serialPort.Close();
@@ -178,10 +185,6 @@ namespace SIM
                 {
                     serialPort.Open();
                     MessageBox.Show("Conectado a " + puertoSeleccionado);
-
-                    // 🔹 Esperar 2 segundos y luego enviar el comando para leer datos 🔹
-                    await Task.Delay(2000);
-                    serialPort.Write("R");
                 }
                 catch (Exception ex)
                 {
@@ -189,7 +192,7 @@ namespace SIM
                 }
             }
         }
-
+        //DISCONECT
         private void Btn_5_Click(object sender, EventArgs e)
         {
             if (serialPort != null)
