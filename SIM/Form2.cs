@@ -23,11 +23,23 @@ namespace SIM
         SerialPort serialPort;
         List<float> datosX = new List<float>();
         int maxPuntos = 100;
+        ToolTip toolTip1 = new ToolTip();
         public Form2()
         {
             InitializeComponent();
 
-           pictureBox1.Paint += pictureBox1_Paint; // Asigna el evento de dibujo
+            pictureBox1.Paint += pictureBox1_Paint; // Asigna el evento de dibujo
+
+
+            //-----------------------------Espacio para los tips-----------------------------// 
+            toolTip1.SetToolTip(this.Btn_0, "Este botón Cierra el programa");
+            toolTip1.SetToolTip(this.Btn_1, "Este botón Inicia el proceso");
+            toolTip1.SetToolTip(this.Btn_2, "Este botón Detiene el proceso");
+            toolTip1.SetToolTip(this.Btn_5, "Este botón Desconecta el programa del equipo");
+            toolTip1.SetToolTip(this.Btn_4, "Este botón Conecta el programa al equipo");
+            toolTip1.SetToolTip(this.Btn_3, "Este botón Actualiza los puertos disponibles");
+            //-------------------------------------------------------------------------------//
+
         }
         private void LoadSerialPorts()
         {
@@ -211,6 +223,58 @@ namespace SIM
             else
             {
                 MessageBox.Show("Conecte un puerto primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        // Evento para "Abrir"
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Archivo seleccionado: " + openFileDialog.FileName);
+            }
+        }
+        // Evento para "Guardar"
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Guardar archivo (aquí iría la lógica)");
+        }
+        // Evento para "Guardar Como..."
+        private void gToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Archivo guardado en: " + saveFileDialog.FileName);
+            }
+        }
+        // Evento para "Configuración"
+        private void configuracionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("En vez de este mensaje se muestra un Panel de Config");
+        }
+        // Evento para "Manual"
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("En vez de este mensaje se muestra el manual del aplicativo con el de la mesa");
+        }
+        // Evento para "Info"
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Versión 1.0.0.15 - Beta");
+        }
+        // Evento para "Exit ToolStrip"
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Seguro que quieres salir?", "Confirmar salida",
+                                          MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                //e.Cancel = true; // Cancela el cierre
+            }
+            else
+            {
+                Application.Exit(); // Cierra el programa si elige "Sí"
             }
         }
     }
