@@ -5,6 +5,7 @@
 // -------------------------------------------------
 
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -175,8 +176,10 @@ namespace SIM
             }
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private async void Form2_Load(object sender, EventArgs e)
         {
+            await UpdateChecker.CheckForUpdatesAsync();
+
             string[] puertos = SerialPort.GetPortNames(); // Obtener puertos disponibles
             comboBox1.Items.AddRange(puertos); // Agregar al ComboBox
             if (puertos.Length > 0)
@@ -261,7 +264,8 @@ namespace SIM
         // Evento para "Info"
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Versión 1.0.0.15 - Beta");
+            string currentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            MessageBox.Show("Versión: " + currentVersion);
         }
         // Evento para "Exit ToolStrip"
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
